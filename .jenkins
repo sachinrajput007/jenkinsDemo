@@ -1,6 +1,7 @@
 pipeline {
   agent any
   stages {
+  boolean testPassed = true
     stage('Test') {
         try{
            sh 'whoami'
