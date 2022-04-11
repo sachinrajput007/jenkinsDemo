@@ -1,14 +1,18 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
-      steps {
-        sh 'echo "hello world"'
-        sh '''
-            echo "Multiline Shell Steps Work Too "
-            ls -lah
-            '''
+    stage('Test') {
+        try{
+           sh 'whoami'
+        }catch (Exception e){
+            testPassed = false
         }
-      }
+    }
+
+    stage('Push Artifacts') {
+        if(testPassed){
+        sh 'echo "hello world"'
+        }
+    }
     }
   }
